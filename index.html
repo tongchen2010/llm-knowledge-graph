@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LLM Knowledge Graph — turn a topic into an interactive graph</title>
+  <meta name="description" content="Turn any topic into an interactive, force-directed knowledge graph. Explore curated graphs instantly, or generate your own from an LLM with your own API key." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='15' fill='%236ea8fe'/><path d='M16 1a15 15 0 000 30z' fill='%238b7cff'/></svg>" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo">◔</span>
+        <div>
+          <h1>LLM Knowledge Graph</h1>
+          <p class="tagline">Turn a topic into an <strong>interactive knowledge graph</strong> — drag, zoom, and click to explore how concepts connect.</p>
+        </div>
+      </div>
+      <a class="ghlink" id="repo-link" href="#" target="_blank" rel="noopener">&lt;/&gt; Source</a>
+    </header>
+
+    <section class="controls">
+      <div class="ctrl">
+        <label for="topic">Curated topic</label>
+        <select id="topic"></select>
+      </div>
+      <details class="live">
+        <summary>✦ Generate your own (bring your own key)</summary>
+        <div class="live-body">
+          <p class="hint">Enter a topic and an <strong>OpenAI API key</strong>. The key is used only for a direct call from your browser and is never stored or sent anywhere else.</p>
+          <div class="live-row">
+            <input id="live-topic" type="text" placeholder="e.g. The French Revolution" />
+            <input id="live-key" type="password" placeholder="sk-…" autocomplete="off" />
+            <button id="gen-btn" class="primary">Generate</button>
+          </div>
+          <p class="status" id="status"></p>
+        </div>
+      </details>
+    </section>
+
+    <main class="graph-card">
+      <svg id="graph" role="img" aria-label="Knowledge graph"></svg>
+      <div class="legend" id="legend"></div>
+      <div class="info" id="info" hidden></div>
+      <div class="hud">Drag nodes · scroll to zoom · click a node to focus its connections</div>
+    </main>
+
+    <footer class="pagefoot">
+      <span>Curated graphs are hand-built so the demo always works offline. "Generate your own" calls an LLM live to extract entities &amp; relations from your topic.</span>
+    </footer>
+  </div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
